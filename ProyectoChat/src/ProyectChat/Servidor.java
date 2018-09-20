@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class Servidor extends javax.swing.JApplet implements Runnable{
     
-    static final int puerto=5000;
+    static final int puerto=3500;
     ServerSocket skServidor;
     DataInputStream flujoEntrada;
     DataOutputStream flujoSalida;
