@@ -52,8 +52,6 @@ public class Servidor extends javax.swing.JApplet implements Runnable{
         btnOn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtArea = new javax.swing.JTextArea();
-        txtMessage = new javax.swing.JTextField();
-        btnSend = new javax.swing.JButton();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -70,22 +68,13 @@ public class Servidor extends javax.swing.JApplet implements Runnable{
         jScrollPane1.setViewportView(txtArea);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 67, 331, 186));
-        getContentPane().add(txtMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 259, 231, 29));
-
-        btnSend.setText("Enviar");
-        btnSend.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSendActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 259, 94, 29));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOnActionPerformed
         // TODO add your handling code here:
         
         try {
-            txtArea.append("\nEscucho el puerto "+puerto);
+            txtArea.append("\nEstoy escuchando ... "+puerto);
             skCliente=skServidor.accept();
             
             flujoEntrada=new DataInputStream(skCliente.getInputStream());
@@ -100,26 +89,11 @@ public class Servidor extends javax.swing.JApplet implements Runnable{
         
     }//GEN-LAST:event_btnOnActionPerformed
 
-    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
-        try {
-            // TODO add your handling code here:
-            
-            flujoSalida.writeUTF("\nServidor:  "+txtMessage.getText().trim());
-            txtArea.append("\nServidor: "+txtMessage.getText().trim());
-        } catch (IOException ex) {
-            
-        }
-        txtMessage.setText("");
-        txtMessage.requestFocus();
-    }//GEN-LAST:event_btnSendActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOn;
-    private javax.swing.JButton btnSend;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtArea;
-    private javax.swing.JTextField txtMessage;
     // End of variables declaration//GEN-END:variables
 
     @Override
