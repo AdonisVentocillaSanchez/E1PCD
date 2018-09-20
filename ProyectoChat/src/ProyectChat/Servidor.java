@@ -103,7 +103,9 @@ public class Servidor extends javax.swing.JApplet implements Runnable{
             while(true)
             {
                 String msg=flujoEntrada.readUTF();
-                txtArea.append(""+msg);
+                String[] datos;
+                datos = msg.split("IP:");
+                txtArea.append("\n"+datos[0]+"IP:"+datos[1]);
                 
             }
         }catch(Exception e)

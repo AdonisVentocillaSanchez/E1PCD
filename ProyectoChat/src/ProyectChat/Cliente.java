@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class Cliente extends javax.swing.JApplet implements ActionListener,Runnable {
     DataInputStream flujoEntrada;
     DataOutputStream    flujoSalida;
-    DataOutputStream    flujoSalidaIP;
     Socket skCliente;
     Thread Listener;
     
@@ -33,7 +32,6 @@ public class Cliente extends javax.swing.JApplet implements ActionListener,Runna
             skCliente=new Socket("localhost",3500);
             flujoEntrada=new DataInputStream(skCliente.getInputStream());
             flujoSalida=new DataOutputStream(skCliente.getOutputStream());
-            flujoSalidaIP=new DataOutputStream(skCliente.getOutputStream());
             txtMessage.requestFocus();
             Listener=new Thread(this);
             Listener.start();
@@ -139,9 +137,9 @@ public class Cliente extends javax.swing.JApplet implements ActionListener,Runna
         // TODO add your handling code here:
         try
         {
-            flujoSalida.writeUTF("\n"+txtName+ ": "+txtMessage.getText().trim());
-            flujoSalidaIP.writeUTF(""+txtIp);
-            txtArea.append("\n"+txtName+ ": "+txtMessage.getText().trim());
+            flujoSalida.writeUTF("\n"+txtName.getText()+ ": "+txtMessage.getText().trim()+"IP:"+txtIp.getText());
+           
+            txtArea.append("\n"+txtName.getText()+ ": "+txtMessage.getText().trim());
         }catch(IOException ex)
         {
         }
